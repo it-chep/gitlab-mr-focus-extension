@@ -84,28 +84,6 @@ h1 {
   border: 1px solid #e5e7eb;
 }
 
-.panel-controls {
-  display: grid;
-  gap: 10px;
-}
-
-.action-button {
-  border: 1px solid #111827;
-  border-radius: 10px;
-  background: #111827;
-  color: #ffffff;
-  padding: 10px 12px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
-}
-
-.action-button:hover {
-  background: #1f2937;
-  border-color: #1f2937;
-}
-
 .panel-title {
   margin: 0 0 6px;
   font-size: 14px;

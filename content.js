@@ -1,6 +1,5 @@
 const STORAGE_KEY = "gitlabMrFocusFilters";
 const LEGACY_STORAGE_KEY = "gitlabMrFocusMode";
-const REMOVE_GAPS_ACTION_KEY = "gitlabMrFocusRemoveGapsAction";
 const ROOT_ENABLED_CLASS = "mr-focus-enabled";
 const HIDDEN_CLASS = "mr-focus-hidden";
 const STYLE_ID = "mr-focus-style";
@@ -234,56 +233,6 @@ function applyFiltersToContainers(containers, filters) {
   }
 }
 
-function removeHiddenContainers() {
-  const hiddenNodes = document.querySelectorAll(`.${HIDDEN_CLASS}`);
-  const containers = new Set();
-  const itemViews = new Set();
-
-  for (const node of hiddenNodes) {
-    const itemView = node.closest(".vue-recycle-scroller__item-view");
-    if (itemView) {
-      itemViews.add(itemView);
-    }
-
-    const target = findHideTarget(node) || node;
-    containers.add(target);
-  }
-
-  for (const container of containers) {
-    if (container instanceof Element) {
-      container.remove();
-    }
-  }
-
-  cleanupEmptyRecycleScrollerItems(itemViews);
-}
-
-function isIgnorableRecycleScrollerChild(element) {
-  if (!element) {
-    return true;
-  }
-
-  if (element.classList.contains(HIDDEN_CLASS)) {
-    return true;
-  }
-
-  return element.classList.contains("gl-mb-5") && element.childElementCount === 0;
-}
-
-function cleanupEmptyRecycleScrollerItems(itemViews) {
-  for (const itemView of itemViews) {
-    const childElements = Array.from(itemView.children);
-    if (childElements.length === 0) {
-      itemView.remove();
-      continue;
-    }
-
-    if (childElements.every((child) => isIgnorableRecycleScrollerChild(child))) {
-      itemView.remove();
-    }
-  }
-}
-
 function applyFilters(filters) {
   if (!isGitLabMrPage()) {
     return;
@@ -382,7 +331,7 @@ async function loadAndApplyFilters() {
 chrome.storage.onChanged.addListener((changes, areaName) => {
   if (
     areaName !== "sync" ||
-    (!changes[STORAGE_KEY] && !changes[LEGACY_STORAGE_KEY] && !changes[REMOVE_GAPS_ACTION_KEY])
+    (!changes[STORAGE_KEY] && !changes[LEGACY_STORAGE_KEY])
   ) {
     return;
   }
@@ -390,11 +339,6 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
   const nextFilters = normalizeFilters(changes[STORAGE_KEY]?.newValue);
   if (changes[STORAGE_KEY]) {
     applyFilters(nextFilters);
-    return;
-  }
-
-  if (changes[REMOVE_GAPS_ACTION_KEY]) {
-    removeHiddenContainers();
     return;
   }
 
