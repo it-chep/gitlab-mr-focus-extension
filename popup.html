@@ -9,15 +9,51 @@
   <body>
     <main class="popup">
       <p class="eyebrow">GitLab MR Focus</p>
-      <h1>Режим просмотра</h1>
-      <div class="tabs" role="tablist" aria-label="Режимы фильтрации">
-        <button class="tab" type="button" data-mode="off" role="tab">Выключено</button>
-        <button class="tab" type="button" data-mode="focus" role="tab">Фокус</button>
-        <button class="tab" type="button" data-mode="e2e" role="tab">Только e2e</button>
-      </div>
+      <h1>Что скрывать</h1>
+      <form class="filters" aria-label="Фильтры скрытия">
+        <label class="filter-option filter-option-master">
+          <input id="select-all" class="filter-checkbox" type="checkbox">
+          <span class="filter-copy">
+            <span class="filter-title">Выбрать все</span>
+            <span class="filter-text">Включить сразу все фильтры, а потом снять лишнее по одному.</span>
+          </span>
+        </label>
+        <label class="filter-option">
+          <input class="filter-checkbox" type="checkbox" data-filter="e2e">
+          <span class="filter-copy">
+            <span class="filter-title">Скрыть e2e</span>
+            <span class="filter-text">Скрывать все файлы из директории e2e.</span>
+          </span>
+        </label>
+        <label class="filter-option">
+          <input class="filter-checkbox" type="checkbox" data-filter="pb">
+          <span class="filter-copy">
+            <span class="filter-title">internal/pb/*</span>
+            <span class="filter-text">Скрывать generated-файлы из internal/pb.</span>
+          </span>
+        </label>
+        <label class="filter-option">
+          <input class="filter-checkbox" type="checkbox" data-filter="test">
+          <span class="filter-copy">
+            <span class="filter-title">*_test.go</span>
+            <span class="filter-text">Скрывать Go-тесты по суффиксу файла.</span>
+          </span>
+        </label>
+        <label class="filter-option">
+          <input class="filter-checkbox" type="checkbox" data-filter="mocks">
+          <span class="filter-copy">
+            <span class="filter-title">mocks</span>
+            <span class="filter-text">Скрывать файлы в папках mocks и файлы вида *_mock.go, *_mocks.go.</span>
+          </span>
+        </label>
+      </form>
+      <section class="panel panel-controls">
+        <button id="remove-gaps" class="action-button" type="button">Удалить пустоты</button>
+        <p class="panel-text">Разово удаляет уже скрытые элементы со страницы. Новые файлы после догрузки будут скрываться как обычно.</p>
+      </section>
       <section class="panel">
-        <p id="mode-title" class="panel-title"></p>
-        <p id="mode-description" class="panel-text"></p>
+        <p id="selection-title" class="panel-title"></p>
+        <p id="selection-description" class="panel-text"></p>
       </section>
     </main>
     <script src="popup.js"></script>

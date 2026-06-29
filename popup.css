@@ -28,32 +28,52 @@ h1 {
   font-size: 20px;
 }
 
-.tabs {
+.filters {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 8px;
 }
 
-.tab {
+.filter-option {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: start;
   border: 1px solid #d1d5db;
   border-radius: 10px;
   background: #ffffff;
   padding: 10px 12px;
-  text-align: left;
-  font-size: 14px;
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
-.tab:hover {
+.filter-option:hover {
   background: #fff7ed;
   border-color: #f59e0b;
 }
 
-.tab.is-active {
-  background: #111827;
-  border-color: #111827;
-  color: #ffffff;
+.filter-option-master {
+  background: #fffbeb;
+  border-color: #f59e0b;
+}
+
+.filter-checkbox {
+  margin: 2px 0 0;
+}
+
+.filter-copy {
+  display: grid;
+  gap: 4px;
+}
+
+.filter-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.filter-text {
+  font-size: 13px;
+  line-height: 1.4;
+  color: #374151;
 }
 
 .panel {
@@ -62,6 +82,28 @@ h1 {
   background: #ffffff;
   padding: 12px;
   border: 1px solid #e5e7eb;
+}
+
+.panel-controls {
+  display: grid;
+  gap: 10px;
+}
+
+.action-button {
+  border: 1px solid #111827;
+  border-radius: 10px;
+  background: #111827;
+  color: #ffffff;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.action-button:hover {
+  background: #1f2937;
+  border-color: #1f2937;
 }
 
 .panel-title {
