@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GitLab MR Focus</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup">
+      <p class="eyebrow">GitLab MR Focus</p>
+      <h1>Режим просмотра</h1>
+      <div class="tabs" role="tablist" aria-label="Режимы фильтрации">
+        <button class="tab" type="button" data-mode="off" role="tab">Выключено</button>
+        <button class="tab" type="button" data-mode="focus" role="tab">Фокус</button>
+        <button class="tab" type="button" data-mode="e2e" role="tab">Только e2e</button>
+      </div>
+      <section class="panel">
+        <p id="mode-title" class="panel-title"></p>
+        <p id="mode-description" class="panel-text"></p>
+      </section>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

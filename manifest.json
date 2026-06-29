@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "GitLab MR Focus",
+  "version": "0.1.0",
+  "description": "Helps focus Merge Request reviews in GitLab by hiding generated, test, or non-e2e files.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "action": {
+    "default_title": "GitLab MR Focus",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
